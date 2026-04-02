@@ -102,31 +102,13 @@ canvas { display: block; }
 .ins-t { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.5; letter-spacing: -0.01em; }
 
 /* ── TOGGLE (상세 보기) ── */
-.detail-toggle-btn {
-  display: flex; align-items: center; gap: 10px;
-  margin-top: 40px; padding: 14px 20px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  cursor: pointer; width: 100%;
-  font-family: 'Pretendard', sans-serif;
-  font-size: 14px; font-weight: 600; color: var(--text2);
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  text-align: left;
-}
-.detail-toggle-btn:hover { background: rgba(255,255,255,0.07); color: var(--text); border-color: var(--border2); }
-.detail-toggle-btn .arrow { margin-left: auto; transition: transform 0.3s; font-size: 16px; }
-.detail-toggle-btn.open .arrow { transform: rotate(180deg); }
-
 /* ── DETAIL SECTION (v11 style) ── */
 .detail-content {
-  display: none;
-  margin-top: 0;
+  display: block;
+  margin-top: 32px;
   padding-top: 48px;
   border-top: 1px solid var(--border);
-  margin-top: 32px;
 }
-.detail-content.open { display: block; }
 
 /* v11 CSS carried over */
 .detail-num { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
@@ -317,9 +299,6 @@ footer { padding: 48px 32px; text-align: center; border-top: 1px solid var(--bor
     </div>
 
     <!-- TOGGLE -->
-    <button class="detail-toggle-btn reveal" onclick="toggleDetail('d1', this)">
-      상세 내용 보기 <span class="arrow">↓</span>
-    </button>
 
     <!-- DETAIL (v11) -->
     <div id="d1" class="detail-content">
@@ -447,10 +426,6 @@ footer { padding: 48px 32px; text-align: center; border-top: 1px solid var(--bor
       </div>
     </div>
 
-    <button class="detail-toggle-btn reveal" onclick="toggleDetail('d2', this)">
-      상세 내용 보기 <span class="arrow">↓</span>
-    </button>
-
     <div id="d2" class="detail-content">
       <div class="v11-phase">
         <div class="v11-phase-header">
@@ -534,13 +509,10 @@ footer { padding: 48px 32px; text-align: center; border-top: 1px solid var(--bor
     </div>
     <div class="phase reveal">
       <div class="phase-label">Problem</div>
-      <div class="num-strip" style="margin-bottom:16px">
-        <div class="num-item"><div class="num-val">233개</div><div class="num-desc">2024 동절기 중단 구독</div></div>
-        <div class="num-item"><div class="num-val">139개</div><div class="num-desc">2025년 3월 재개 alive</div></div>
-        <div class="num-item"><div class="num-val">40%</div><div class="num-desc">영구 이탈 비율</div></div>
-      </div>
       <ul class="kp-list">
+        <li>전년 동절기 중단 구독 <strong>233개</strong> 중 2025년 3월 재개 시 alive는 <strong>139개</strong> — <strong>40%가 영구 이탈</strong></li>
         <li>중단 직후 유지율 70% → 4개월 후 30% 미만 — 시간이 지날수록 복귀 가능성 급감</li>
+        <li>매년 반복되는 구조적 문제 — 사전 개입 없이는 이탈 임계점 도달 전 회복 불가</li>
       </ul>
     </div>
     <div class="phase reveal">
@@ -571,10 +543,6 @@ footer { padding: 48px 32px; text-align: center; border-top: 1px solid var(--bor
         </div>
       </div>
     </div>
-
-    <button class="detail-toggle-btn reveal" onclick="toggleDetail('d3', this)">
-      상세 내용 보기 <span class="arrow">↓</span>
-    </button>
 
     <div id="d3" class="detail-content">
       <div class="v11-phase">
@@ -667,8 +635,6 @@ footer { padding: 48px 32px; text-align: center; border-top: 1px solid var(--bor
       <div class="num-strip">
         <div class="num-item"><div class="num-val">+25%</div><div class="num-desc">연휴 기간 수요 증가</div></div>
         <div class="num-item"><div class="num-val">82%</div><div class="num-desc">파트너 배정 성공률</div></div>
-        <div class="num-item"><div class="num-val">~30%</div><div class="num-desc">연휴 기간 CVR 하락</div></div>
-        <div class="num-item"><div class="num-val">5%</div><div class="num-desc">최적 할증 내성 구간</div></div>
       </div>
       <div class="chart-row col2">
         <div class="chart-box">
@@ -686,10 +652,6 @@ footer { padding: 48px 32px; text-align: center; border-top: 1px solid var(--bor
         <div class="ins"><div class="ins-n">Insight 03</div><div class="ins-t">수요 25% 증가 시 운영 부하 2배 — 연휴 전 파트너 사전 확보 필수</div></div>
       </div>
     </div>
-
-    <button class="detail-toggle-btn reveal" onclick="toggleDetail('d4', this)">
-      상세 내용 보기 <span class="arrow">↓</span>
-    </button>
 
     <div id="d4" class="detail-content">
       <div class="v11-phase">
@@ -823,15 +785,6 @@ new Chart(document.getElementById('c4_cvr'), {
   options:{ responsive:true, plugins:{ legend:{labels:{boxWidth:10,padding:14}}, tooltip:{...TT} }, scales:{ y:{min:0,max:8,ticks:{callback:v=>v+'%'},grid:{color:G}}, x:{grid:{display:false}} } }
 });
 
-// Toggle
-function toggleDetail(id, btn) {
-  const el = document.getElementById(id);
-  const isOpen = el.classList.contains('open');
-  el.classList.toggle('open');
-  btn.classList.toggle('open');
-  btn.querySelector('.arrow').textContent = isOpen ? '↓' : '↑';
-  btn.childNodes[0].textContent = isOpen ? ' 상세 내용 보기 ' : ' 상세 내용 접기 ';
-}
 
 // Reveal
 const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.08});
